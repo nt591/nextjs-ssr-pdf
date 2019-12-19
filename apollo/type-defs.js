@@ -1,17 +1,24 @@
 import gql from 'graphql-tag'
 
 export const typeDefs = gql`
-  type Person {
-    id: String
+  type PokemonIndex {
     url: String!
     name: String!
-    hair_color: String!
-    height: String!
-    gender: String!
-    birth_year: String!
   }
+
+  type Sprite {
+    front_default: String
+    front_shiny: String
+  }
+
+  type Pokemon {
+    sprites: Sprite
+    name: String
+    height: Int
+  }
+
   type Query {
-    people: [Person]!
-    person: Person!
+    pokemonList: [PokemonIndex]
+    pokemon(name: String!): Pokemon
   }
 `

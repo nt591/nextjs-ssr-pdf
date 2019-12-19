@@ -3,35 +3,30 @@ import gql from 'graphql-tag'
 import Link from 'next/link'
 import { useQuery } from '@apollo/react-hooks'
 
-const PeopleQuery = gql`
-  query People {
-    people {
+const PokemonQuery = gql`
+  query Pokemon {
+    pokemonList {
       url
       name
-    }
   }
+}
 `
 
 const Index = () => {
-  const { data } = useQuery(PeopleQuery)
-
+  const { data } = useQuery(PokemonQuery)
   if (!data) return null;
 
-  const { people } = data;
+  const { pokemonList: pokemon } = data;
 
-  if (people) {
-
+  if (pokemon) {
     return (
       <div>
-        { people.map(person => {
-          const urlSegments = person.url.split("/");
-          const personId = urlSegments[urlSegments.length - 2];
+        { pokemon.map(poke => {
           return (
-            <ul key={person.name}>
-              <li>Name: {person.name} </li>
-
+            <ul key={poke.name}>
+              <li>Name: {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)} </li>
               <li>
-                <Link href="/person/[id]" as={`/person/${personId}`}>
+                <Link href="/pokemon/[name]" as={`/pokemon/${poke.name}`}>
                   <a target="_blank">Link to Page</a>
                 </Link>
               </li>
