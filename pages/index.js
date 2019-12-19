@@ -23,12 +23,22 @@ const Index = () => {
 
     return (
       <div>
-        { people.map(person => (
-          <ul key={person.name}>
-            <li>Name: {person.name} </li>
-            <li>Page: <a target="_blank" href={person.url}>click here</a> </li>
-          </ul>
-        ))}
+        { people.map(person => {
+          const urlSegments = person.url.split("/");
+          const personId = urlSegments[urlSegments.length - 2];
+          return (
+            <ul key={person.name}>
+              <li>Name: {person.name} </li>
+
+              <li>
+                <Link href="/person/[id]" as={`/person/${personId}`}>
+                  <a target="_blank">Link to Page</a>
+                </Link>
+              </li>
+            </ul>
+          )
+        })
+      }
       </div>
     )
   }
