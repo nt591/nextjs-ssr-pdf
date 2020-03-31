@@ -7,7 +7,7 @@
     "apollo-server-micro": "^2.9.14",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
-    "next": "^9.1.6",
+    "next": "^9.3.2",
     "node-fetch": "^2.6.0",
     "puppeteer": "^2.0.0",
     "react": "^16.12.0",
